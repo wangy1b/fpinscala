@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/answers/answers.iml" filepath="$PROJECT_DIR$/answers/answers.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exercises/exercises.iml" filepath="$PROJECT_DIR$/exercises/exercises.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fpinscala.iml" filepath="$PROJECT_DIR$/fpinscala.iml" />
+    </modules>
+  </component>
+</project>
