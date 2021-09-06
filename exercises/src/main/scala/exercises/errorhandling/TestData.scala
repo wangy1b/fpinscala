@@ -2,7 +2,21 @@ package exercises.errorhandling
 import scala.{Either => _, Left => _, Option => _, Right => _, _}
 //
 // 将Error放进一个Seq，可以解决需要返回多个错误的需求
-trait Partial[+A,+B]
+sealed trait Partial[+A,+B]{
+  def map[C](f: B => C): Partial[A, C] = this match {
+    case Errors(e) => Errors(e)
+    case Success(e) => Success(f(e))
+  }
+
+  def flatMap[EE >: A, B, C](f: B => Partial[EE, C]): Partial[EE, C] = this match {
+    case Errors(e) => Errors(e)
+    case Success(b) => f(b)
+  }
+
+  def map2[EE >: A, B, C](b: Partial[EE, B])(f: (A, B) => C): Partial[EE, C] =
+    for { a <- this; b1 <- b } yield f(a,b1)
+
+}
 case class Errors[+A](get: Seq[A]) extends Partial[A,Nothing]
 case class Success[+B](get: B) extends Partial[Nothing,B]
 
